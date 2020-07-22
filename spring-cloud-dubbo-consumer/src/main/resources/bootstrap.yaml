@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: spring-cloud-dubbo-consumer
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    nacos:
+      discovery:
+        enabled: true
+        register-enabled: true
+        server-addr: 10.237.145.241:8848,10.237.145.242:8848,10.237.145.243:8848

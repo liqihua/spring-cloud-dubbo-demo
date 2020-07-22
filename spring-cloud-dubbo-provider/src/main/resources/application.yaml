@@ -1,0 +1,14 @@
+server:
+  port: 9002
+
+dubbo:
+  scan:
+    base-packages: com.liqihua.demo.provider.controller
+  protocols:
+    dubbo:
+      name: dubbo
+      port: -1
+  registry:
+    address: nacos://10.237.145.241:8848,10.237.145.242:8848,10.237.145.243:8848
+    register: true #只注册
+    subscribe: false #不订阅
