@@ -34,7 +34,7 @@ public class TestController {
     private OrderRPCFeignApi orderRPCFeignApi;
 
     /**
-     * 原生方式调用 dubbo 服务
+     * dubbo写法，rpc 方式调用 dubbo 服务
      * http://localhost:9001/test/test1
      * @return
      */
@@ -44,7 +44,7 @@ public class TestController {
     }
 
     /**
-     * http 方式调用 dubbo 服务
+     * restTemplate 写法，http 方式调用 dubbo 服务
      * http://localhost:9001/test/test2
      * @return
      */
@@ -53,19 +53,24 @@ public class TestController {
         return restTemplate.postForObject("http://spring-cloud-dubbo-provider/order/list",new OrderListDTO(2222L),ResultVO.class);
     }
 
-
+    /**
+     * feign 写法，http 方式调用 dubbo 服务
+     * @return
+     */
     @RequestMapping("/test3")
     public ResultVO test3() {
         return orderHTTPFeignApi.list(new OrderListDTO(3333L));
     }
 
+
+    /**
+     * feign 写法，rpc 方式调用 dubbo 服务
+     * @return
+     */
     @RequestMapping("/test4")
     public ResultVO test4() {
         return orderRPCFeignApi.list(new OrderListDTO(4444L));
     }
-
-
-
 
 
 
