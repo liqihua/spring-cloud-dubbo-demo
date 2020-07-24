@@ -19,6 +19,7 @@
         <spring-boot.version>2.2.5.RELEASE</spring-boot.version>
         <spring-cloud-alibaba.version>2.2.1.RELEASE</spring-cloud-alibaba.version>
         <spring-cloud-openfeign.version>2.2.2.RELEASE</spring-cloud-openfeign.version>
+        <curator.version>4.0.1</curator.version>
     </properties>
 
 
@@ -75,6 +76,12 @@
             <artifactId>lombok</artifactId>
             <version>1.18.6</version>
             <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.curator</groupId>
+            <artifactId>curator-framework</artifactId>
+            <version>${curator.version}</version>
         </dependency>
     </dependencies>
 

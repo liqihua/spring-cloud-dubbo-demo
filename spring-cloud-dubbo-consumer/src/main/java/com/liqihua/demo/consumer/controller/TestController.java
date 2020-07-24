@@ -21,7 +21,7 @@ import java.util.List;
 @RequestMapping("/test")
 public class TestController {
 
-    @Reference
+    @Reference(validation = "true")
     private OrderDubboApi orderDubboApi;
 
     @Autowired
@@ -40,7 +40,7 @@ public class TestController {
      */
     @RequestMapping("/test1")
     public ResultVO test1() {
-        return orderDubboApi.list(new OrderListDTO(1111L));
+        return orderDubboApi.list(new OrderListDTO(1111L,null));
     }
 
     /**
@@ -50,7 +50,7 @@ public class TestController {
      */
     @RequestMapping("/test2")
     public ResultVO test2() {
-        return restTemplate.postForObject("http://spring-cloud-dubbo-provider/order/list",new OrderListDTO(2222L),ResultVO.class);
+        return restTemplate.postForObject("http://spring-cloud-dubbo-provider/order/list",new OrderListDTO(2222L,null),ResultVO.class);
     }
 
     /**
@@ -59,7 +59,7 @@ public class TestController {
      */
     @RequestMapping("/test3")
     public ResultVO test3() {
-        return orderHTTPFeignApi.list(new OrderListDTO(3333L));
+        return orderHTTPFeignApi.list(new OrderListDTO(3333L,null));
     }
 
 
@@ -69,7 +69,7 @@ public class TestController {
      */
     @RequestMapping("/test4")
     public ResultVO test4() {
-        return orderRPCFeignApi.list(new OrderListDTO(4444L));
+        return orderRPCFeignApi.list(new OrderListDTO(4444L,null));
     }
 
 
@@ -79,7 +79,6 @@ public class TestController {
 
     @FeignClient("spring-cloud-dubbo-provider")
     public interface OrderHTTPFeignApi {
-
         @PostMapping("/order/list")
         ResultVO<List<OrderVO>> list(@RequestBody  OrderListDTO param);
     }
@@ -89,7 +88,6 @@ public class TestController {
     @FeignClient("spring-cloud-dubbo-provider")
     @DubboTransported(protocol = "dubbo")
     public interface OrderRPCFeignApi {
-
         @PostMapping("/order/list")
         ResultVO<List<OrderVO>> list(@RequestBody OrderListDTO param);
     }
